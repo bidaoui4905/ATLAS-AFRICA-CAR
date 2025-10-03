@@ -1,9 +1,4 @@
-/*!
- * Bootstrap v4.3.1 (https://getbootstrap.com/)
- * Copyright 2011-2019 The Bootstrap Authors
- * Copyright 2011-2019 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
+
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -3464,6 +3459,36 @@ input[type="button"].btn-block {
   .navbar-brand:hover, .navbar-brand:focus {
     text-decoration: none; }
 
+  /* ensure visible overflow so the enlarged logo can "hang" outside the navbar */
+.navbar-brand { overflow: visible; }
+
+/* base size (logical line height) */
+.navbar-logo {
+  max-height: 56px;           /* hauteur de la ligne = barre inchangée */
+  width: auto;
+  display: inline-block;
+  transform-origin: left center;
+  transform: translateY(0) scale(1);
+  transition: transform .15s ease;
+  margin-right: 12px;
+  z-index: 1050;
+}
+
+
+/* visual enlargement classes you can use on the <img> */
+.navbar-logo.scale-lg { transform: translateY(-6px) scale(1.25); } /* +25% */
+.navbar-logo.scale-md { transform: translateY(-4px) scale(1.15); } /* +15% */
+.navbar-logo.scale-sm { transform: translateY(-2px) scale(1.08); } /* +8% */
+
+/* reduce/disable effect on smaller screens so it doesn't collide with burger */
+@media (max-width: 768px) {
+  .navbar-logo.scale-lg { transform: translateY(-3px) scale(1.05); }
+  .navbar-logo.scale-md { transform: translateY(-2px) scale(1.03); }
+  .navbar-logo.scale-sm { transform: translateY(0) scale(1); }
+}
+@media (max-width: 480px) {
+  .navbar-logo { transform: translateY(0) scale(1); max-height: 40px; }
+}
 .navbar-nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -9946,3 +9971,82 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+/* Logo sizing for navbar and footer (responsive) */
+.site-logo {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+.navbar-logo {
+  max-height: 50px; /* slightly larger */
+}
+.footer-logo {
+  max-height: 64px; /* footer can be slightly larger */
+}
+@media (max-width: 768px) {
+  .navbar-logo { max-height: 40px; }
+  .footer-logo { max-height: 48px; }
+}
+@media (max-width: 480px) {
+  .navbar-logo { max-height: 34px; }
+  .footer-logo { max-height: 40px; }
+}
+
+/* Brand text next to logo */
+.brand-text {
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+}
+.brand-text span { font-weight: 700; }
+
+/* Per-word brand colors */
+.brand-black { color: #000 !important; }
+.brand-accent { color: #0fbf8b !important; }
+.brand-muted { color: #444 !important; font-weight: 600; }
+
+@media (max-width: 768px) {
+  .brand-text { font-size: 16px; }
+}
+@media (max-width: 480px) {
+  .brand-text { font-size: 14px; }
+}
+
+/* White navbar bar with shadow and dark links */
+#ftco-navbar {
+  background-color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+#ftco-navbar .navbar-nav .nav-link {
+  color: #333333 !important;
+  font-weight: 600;
+}
+#ftco-navbar .navbar-nav .nav-link:hover,
+#ftco-navbar .navbar-nav .nav-link:focus {
+  color: #0fbf8b !important; /* keep accent hover color */
+}
+#ftco-navbar .navbar-brand .brand-text,
+#ftco-navbar .navbar-brand .brand-text span {
+  color: #222222;
+}
+#ftco-navbar .navbar-toggler {
+  border-color: rgba(0,0,0,0.08);
+}
+#ftco-navbar.navbar-dark .navbar-toggler .oi {
+  color: #333;
+}
+
+/* Reduce hero top padding so content won't jump under sticky navbar */
+body {
+  padding-top: 0; /* keep default, sections have their own spacing */
+}
+
+
